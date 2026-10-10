@@ -1,0 +1,45 @@
+/* V2: put the playable board first, with supporting information in compact rows. */
+:root{--viewport-height:100svh}
+@supports(height:100dvh){:root{--viewport-height:100dvh}}
+.topbar{max-width:none;height:48px;padding:6px 18px;gap:12px}
+.brand{font-size:13px;gap:8px}.brand-mark{width:30px;height:30px;border-radius:9px}
+.brand small{display:none}.edition{font-size:9px}.topbar>.icon-button{min-height:32px;padding:5px}
+.layout{display:flex;flex-direction:column;align-items:center;max-width:none;width:100%;padding:0 16px;margin:0;gap:0}
+.side-left{display:contents}.intro,.journey,.desktop-tip,.site-footer{display:none}
+.score-card{display:flex;align-items:center;justify-content:center;width:100%;height:44px;gap:32px;border:0;border-radius:0;background:none;overflow:visible}
+.score-main{display:flex;align-items:center;flex:0 1 auto;gap:12px;padding:0}
+.score-main>.label{font-size:11px;white-space:nowrap}.score-main strong{margin:0;font-size:30px;line-height:1;letter-spacing:0}
+.score-flair{display:none}.best{border:0;border-left:1px solid #adbcd82b;background:none;padding:0 0 0 26px;gap:12px}
+.best>span{font-size:10px}.best>strong{font-size:19px}
+.game-column{display:flex;flex-direction:column;align-items:center;width:100%;min-width:0}
+.game-top{width:100%;height:32px;padding:0 6px}.state-indicator{font-size:10px}
+.next-preview{gap:8px}.next-preview img{height:30px;width:30px}
+.stage{position:relative;flex:none;min-width:0;max-width:100%;height:auto;aspect-ratio:420/640;border-radius:16px;box-shadow:0 10px 32px #0002}
+/* Absolute positioning removes the canvas intrinsic dimensions from layout. */
+#game{position:absolute;inset:0;display:block;width:100%;height:100%}
+.stage-corners{border-radius:16px}
+.game-bottom{width:100%;height:34px;margin:8px 0 0;padding:0 6px}
+.game-bottom>p{font-size:11px}.controls .icon-button{height:34px;width:38px;min-height:34px;min-width:38px;padding:8px}
+.collection{display:block;width:100%;max-width:1100px;margin:14px auto 20px;padding:0 14px;border-radius:12px;grid-column:auto}
+.collection-toggle{cursor:pointer;padding:12px 0;font-size:12px;color:#b5c2d6;list-style-position:inside}
+.collection-toggle>span{float:right;color:#8395ac;font-size:10px}.collection[open]{padding-bottom:16px}
+.collection-header,.collection-note,.final-goal{display:none}
+.level-grid{grid-template-columns:repeat(11,minmax(0,1fr));gap:12px 8px;padding-top:8px}
+.level-item figure{width:54px;height:54px}.level-item:nth-child(11){grid-column:auto}.level-name{font-size:10px}
+.toast{max-width:calc(100% - 24px);white-space:normal}
+/* Keep the preview and controls attached to the portrait board on every screen. */
+.topbar{height:calc(48px + env(safe-area-inset-top));padding-top:calc(6px + env(safe-area-inset-top))}
+.layout{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+.game-column{width:min(100%,calc(max(180px,calc(var(--viewport-height) - 188px - env(safe-area-inset-top) - env(safe-area-inset-bottom))) * .65625))}
+.game-bottom{height:44px;flex:none}.controls .icon-button{width:44px;height:44px;min-width:44px;min-height:44px}
+.controls{gap:6px}.game-top{flex:none}.collection{margin-bottom:calc(20px + env(safe-area-inset-bottom))}
+.game-bottom>p{min-width:0;white-space:normal;flex:1}.controls,.next-preview{flex-shrink:0}
+.state-indicator{min-width:0}.state-indicator>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:620px){
+ .topbar{padding-inline:max(12px,env(safe-area-inset-left))}.edition{font-size:8px}
+ .score-card{gap:20px}.score-main{gap:8px}.score-main strong{font-size:28px}.best{padding-left:16px;gap:8px}
+ .score-main>.label{font-size:10px}.best>span{font-size:9px}.best>strong{font-size:17px}
+ .game-top{padding:0}.state-indicator{font-size:9px}.game-bottom{padding:0}.game-bottom>p{font-size:10px}
+ .collection{margin-top:14px}.level-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 5px}
+ .level-item figure{height:40px;width:40px}.level-name{font-size:8px}
+}
